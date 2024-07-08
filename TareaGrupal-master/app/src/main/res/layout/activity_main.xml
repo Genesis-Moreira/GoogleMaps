@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FABfoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/camera" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Agregar una Foto"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/FABfoto"
+        app:layout_constraintStart_toStartOf="@+id/FABfoto"
+        app:layout_constraintTop_toBottomOf="@+id/FABfoto" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="409dp"
+        android:layout_height="542dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.194">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="532dp"
+                android:background="#FFFFFF">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/idCorreo"
+                    android:layout_width="310dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:layout_constraintEnd_toEndOf="@+id/idTelefono"
+                    app:layout_constraintStart_toStartOf="@+id/menu"
+                    app:layout_constraintTop_toBottomOf="@+id/menu">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtCorreo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="email"
+                        android:hint="Correo Electronico" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/idTelefono"
+                    android:layout_width="310dp"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:layout_constraintEnd_toEndOf="@+id/idEmpresa"
+                    app:layout_constraintStart_toStartOf="@+id/idEmpresa"
+                    app:layout_constraintTop_toBottomOf="@+id/idEmpresa">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtTelefono"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Télefono"
+                        android:numeric="decimal"
+                        android:phoneNumber="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/idEmpresa"
+                    android:layout_width="310dp"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="100"
+                    app:layout_constraintEnd_toEndOf="@+id/idApellido"
+                    app:layout_constraintStart_toStartOf="@+id/idApellido"
+                    app:layout_constraintTop_toBottomOf="@+id/idApellido">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEmpresa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Empresa" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/idApellido"
+                    android:layout_width="310dp"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:layout_constraintEnd_toEndOf="@+id/idNombre"
+                    app:layout_constraintStart_toStartOf="@+id/idNombre"
+                    app:layout_constraintTop_toBottomOf="@+id/idNombre">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtApellido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Apellido" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/idNombre"
+                    android:layout_width="310dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="50dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombre" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="44dp"
+                    android:layout_height="49dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/idNombre"
+                    app:layout_constraintEnd_toStartOf="@+id/idNombre"
+                    app:layout_constraintTop_toTopOf="@+id/idNombre"
+                    app:layout_constraintVertical_bias="0.484"
+                    app:srcCompat="@drawable/ic_person" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="47dp"
+                    android:layout_height="53dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/idEmpresa"
+                    app:layout_constraintEnd_toStartOf="@+id/idEmpresa"
+                    app:layout_constraintTop_toTopOf="@+id/idEmpresa"
+                    app:layout_constraintVertical_bias="0.275"
+                    app:srcCompat="@drawable/ic_empresa" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/menu"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Seleccione una opción"
+                    app:layout_constraintStart_toStartOf="@+id/idTelefono"
+                    app:layout_constraintTop_toBottomOf="@id/idTelefono">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/actvLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="Seleccione una opción"
+                        android:hint="Seleccione una opción"
+                        android:importantForAccessibility="yes"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="45dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/idTelefono"
+                    app:layout_constraintEnd_toStartOf="@+id/idTelefono"
+                    app:layout_constraintTop_toTopOf="@+id/idTelefono"
+                    app:layout_constraintVertical_bias="0.233"
+                    app:srcCompat="@drawable/telefo" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="41dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/idCorreo"
+                    app:layout_constraintEnd_toStartOf="@+id/idCorreo"
+                    app:layout_constraintTop_toTopOf="@+id/idCorreo"
+                    app:layout_constraintVertical_bias="0.366"
+                    app:srcCompat="@drawable/corr" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:background="#A3FAFAFA"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="left|center_vertical"
+        android:text="Registro de Contacto"
+        android:textAlignment="center"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/FABfoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFC0ABE4"
+        android:onClick="clickbBotonGuardar"
+        android:text="Guardar"
+        android:textAlignment="center"
+        android:textColor="#191818"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
