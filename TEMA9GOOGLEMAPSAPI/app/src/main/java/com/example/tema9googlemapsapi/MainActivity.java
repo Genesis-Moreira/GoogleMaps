@@ -19,18 +19,30 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.slider.Slider;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class MainActivity
         extends AppCompatActivity
-        implements OnMapReadyCallback {
+        implements OnMapReadyCallback , WebService.Asynchtask {
     GoogleMap map;
     Double lat, lng;
     EditText txtLat, txtLong;
     Circle circulo = null;
     Slider sliderRadio;
     float radio = 1;
+
+    List<Marker> markers =new ArrayList<Marker>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,18 +61,19 @@ public class MainActivity
         mapFragment.getMapAsync(this);
         txtLat = findViewById(R.id.txtLatitud);
         txtLong = findViewById(R.id.txtLogitud);
-        sliderRadio= findViewById(R.id.sliderRadio);
+        sliderRadio = findViewById(R.id.sliderRadio);
         sliderRadio.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
 
 
-        public void onStartTrackingTouch(@NonNull Slider slider) {
-            radio = slider.getValue();
-            updateInterfaz();
-        }
-        @Override
-        public void onStopTrackingTouch(@NonNull Slider slider) {
-        }
-    });
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+                radio = slider.getValue();
+                updateInterfaz();
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+            }
+        });
     }
 
 
@@ -90,21 +103,45 @@ public class MainActivity
             public void onCameraIdle() {
                 LatLng center = map.getCameraPosition().target;
                 lat = center.latitude;
-                lng =center.longitude;
+                lng = center.longitude;
                 updateInterfaz();
             }
         });
     }
 
 
-    private void updateInterfaz(){
+    private void updateInterfaz() {
         txtLat.setText(String.format("%.4f", lat));
         txtLong.setText(String.format("%.4f", lng));
 
 
-
         PintarCirculo();
+
+        Map<String, String> datos = new HashMap<String, String>();
+        WebService.WebService ws = new WebService.WebService(
+                "https://turismoquevedo.com/lugar_turistico/json_getlistadoMapa?lat=" + lat +
+                        "&lng=" + lng + "&radio=" + (radio / 10.0), datos,
+                MainActivity.this, MainActivity.this);
+        ws.execute("GET");
+
     }
+    public void processFinish(String result) throws JSONException {
+
+        for(Marker marker : markers) marker.remove();
+        markers.clear();
+
+        JSONObject JSONobj= new JSONObject(result);
+        JSONArray jsonLista = JSONobj.getJSONArray("data");
+        for(int i=0; i< jsonLista.length(); i++){
+            JSONObject lugar= jsonLista.getJSONObject(i);
+            markers.add(map.addMarker(
+                    new MarkerOptions().position(
+                            new LatLng(lugar.getDouble("lat"), lugar.getDouble("lng"))
+                    ).title(lugar.get("nombre").toString())));
+
+    }
+    }
+
     private void PintarCirculo(){
         if(circulo!=null){ circulo.remove(); circulo = null;}
 
